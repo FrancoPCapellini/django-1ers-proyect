@@ -4,7 +4,7 @@ URL configuration for myproject project.
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
 Examples:
-Function views
+Function viewserror django con templates FileNotFoundErro
     1. Add an import:  from my_app import views
     2. Add a URL to urlpatterns:  path('', views.home, name='home')
 Class-based views
@@ -17,11 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from myproject.view import saludo, dia_de_hoy, miNombreEs
+from myproject.view import saludo, dia_de_hoy, miNombreEs, probando_template, MiPrimeraPlantilla 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("saludo/", saludo),
     path("diaDeHoy/", dia_de_hoy),
-    path("minombre_es/<nombre>", miNombreEs)
+    path("minombre_es/<nombre>", miNombreEs),
+    path("probandoTemplates/", probando_template),
+    path("MiPrimeraPlantilla/", MiPrimeraPlantilla)
 ]
