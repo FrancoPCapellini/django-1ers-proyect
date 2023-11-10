@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="">
         <title>Mi primer Template</title>
     </head>
     <body>
@@ -12,5 +13,16 @@
         <p style="color: red">Mi nombre es: {{nombre}}</p>
         <p style="color: green">Mi apellido es: {{apellido}}</p>
         
+        <h1>Este template fue creado el: {{hoy}}</h1>
+        <h3>Estas son mis notas de la universidad: </h3>
+        <p class="notes">
+            {% for n in notas%}
+            {% if n < 4 %}
+            <p style="color: red"> nota mala {{n}}</p> 
+            {% else %}
+            <p style="color: green"> buena nota {{n}}</p>
+            {% endif %}
+            {% endfor %}
+        </p>
     </body>
 </html>

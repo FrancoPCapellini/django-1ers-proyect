@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 import datetime
-from django.template import Template, Context
+from django.template import Template, Context, loader
 
 
 
@@ -18,27 +18,9 @@ def miNombreEs(self, nombre):
     documentodetexto = f"Mi nombre es: {nombre}"
     return HttpResponse(documentodetexto)
 
-def probando_template(request):
-    nombre = "Franco"
-    apellido = "Peña"
-    
-    diccionario = {"nombre":nombre, "apellido":apellido} # <------ Para enviar al contexto
-    
-    mi_html = open("myproject/templates/plantilla1.html","r")
-    
-    plantilla = Template(mi_html.read())
-    
-    mi_html.close()
-    
-    mi_contexto = Context(diccionario)
-    
-    documento = plantilla.render(mi_contexto)
-    
-    return HttpResponse(documento)
-
 def MiPrimeraPlantilla(request):
     # Abrimos el documento que tiene la plantilla:
-    plantiallaExterna = open("myproject/templates/plantilla1.html","r")
+    plantiallaExterna = open("myproject/templates/plantilla1.html")
     # Cargar el documento en una variable de tipo "Template":
     template = Template(plantiallaExterna.read())
     # Cerrar el documento externo que abrimos:
@@ -48,4 +30,16 @@ def MiPrimeraPlantilla(request):
     # Renderizar el documento:
     documento = template.render(contexto)
     return HttpResponse(documento)
-    
+
+def probando_template(request):
+    nombre = "Franco"
+    apellido = "Peña"
+    lista_de_notas = [8,2,3,9,10]
+    diccionario = {"nombre":nombre,
+                   "apellido":apellido,
+                   "hoy":datetime.datetime.now(),
+                   "notas":lista_de_notas
+                   } 
+    plantilla = loader.get_template("plantilla1.html")
+    documento = plantilla.render(diccionario)
+    return HttpResponse(documento)  
