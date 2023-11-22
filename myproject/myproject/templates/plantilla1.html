@@ -6,6 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="">
         <title>Mi primer Template</title>
+        <style type="text/css">
+            li{
+                color: aquamarine;
+            }
+        </style>
     </head>
     <body>
         <h1>Excelente!!!.... es muy facil usar plantillas</h1>
@@ -13,7 +18,7 @@
         <p style="color: red">Mi nombre es: {{nombre}}</p>
         <p style="color: green">Mi apellido es: {{apellido}}</p>
         
-        <h1>Este template fue creado el: {{hoy}}</h1>
+        <h1>Fecha actual: {{fecha_actual.day}} / {{fecha_actual.month}} / {{fecha_actual.year}}</h1>
         <h3>Estas son mis notas de la universidad: </h3>
         <p class="notes">
             {% for n in notas%}
@@ -24,5 +29,21 @@
             {% endif %}
             {% endfor %}
         </p>
+        {# Esto es un  comentario que sera de utilidad#}
+        <h3>numero de lenguajes: {{lenguajes|length}}</h3>
+        <ul>
+            {% for leng in lenguajes %}
+                {% if leng == "python" %}
+                    <li style="color: rgb(125, 4, 155)">{{leng}}</li>
+                {% else %}
+                    <li>{{leng|first}} : {{leng|lower}}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        {% comment %}
+        este es
+        un comentario
+        de varias lineas
+        {% endcomment%}
     </body>
 </html>

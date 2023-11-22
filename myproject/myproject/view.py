@@ -31,15 +31,20 @@ def MiPrimeraPlantilla(request):
     documento = template.render(contexto)
     return HttpResponse(documento)
 
-def probando_template(request):
+def probando_template(request): #Loaders, es para laburar con mas de una plantilla
     nombre = "Franco"
     apellido = "Peña"
     lista_de_notas = [8,2,3,9,10]
+    lenguajes = ["python","Ruby","C++","JS"]
     diccionario = {"nombre":nombre,
                    "apellido":apellido,
-                   "hoy":datetime.datetime.now(),
-                   "notas":lista_de_notas
+                   "fecha_actual":datetime.datetime.now(),
+                   "notas":lista_de_notas,
+                   "lenguajes": lenguajes,
                    } 
+    # Especificando la carpeta donde se encuentran las plantillas y creamos una variable que la almacene
     plantilla = loader.get_template("plantilla1.html")
+    # Renderiza el doc.
     documento = plantilla.render(diccionario)
-    return HttpResponse(documento)  
+    return HttpResponse(documento)
+
